@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Meine Bücher</string>
+
+    <string name="title_other">other</string>
+    <string name="title_books">Bücher</string>
+    <string name="title_another">another</string>
+
+    <!-- dialog -->
+    <string name="dialog_header_new">Erstellen</string>
+    <string name="dialog_header_edit">Bearbeiten</string>
+    <string name="dialog_author">Autor</string>
+    <string name="dialog_title">Titel</string>
+    <string name="dialog_isbn">ISBN</string>
+    <string name="dialog_action_ok">ok</string>
+    <string name="dialog_action_cancel">zurück</string>
+
+    <!-- intent -->
+    <string name="intent_method">method</string>
+    <string name="intent_position">position</string>
+    <string name="intent_id">id</string>
+    <string name="intent_author">author</string>
+    <string name="intent_title">title</string>
+    <string name="intent_isbn">isbn</string>
+
+    <!-- errors -->
+    <string name="error_dbError">Prüfe die SQL-Verbindung!</string>
+    <string name="error_wrongInput">Prüfe deine Eingaben!</string>
+</resources>
