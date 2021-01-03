@@ -21,6 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -153,6 +155,16 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
         }
     }
 
+    public void sort(){
+        Collections.sort(itemList, new Comparator<BooksRecyclerItem>() {
+            @Override
+            public int compare(BooksRecyclerItem o1, BooksRecyclerItem o2) {
+                return o1.getAuthor().compareTo(o2.getAuthor());
+            }
+        });
+        adapter.notifyDataSetChanged();
+    }
+
     /***
      * database connection
      */
@@ -171,6 +183,7 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
             itemList.add(new BooksRecyclerItem(id, author, title, isbn, done, borrowed));
         }
         adapter.notifyDataSetChanged();
+        sort();
     }
 
     public void onDelete(int position){
@@ -208,6 +221,7 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
             itemList.add(item);
             adapter.notifyItemInserted(itemList.size());
         }
+        sort();
     }
 
     public void onEdit(int position, String author, String title, String isbn){
@@ -216,5 +230,6 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
         itemList.get(position).setTitle(title);
         itemList.get(position).setIsbn(isbn);
         adapter.notifyItemChanged(position);
+        sort();
     }
 }

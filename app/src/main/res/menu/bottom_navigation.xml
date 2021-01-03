@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_other"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/title_other"/>
-
-    <item
         android:id="@+id/nav_books"
         android:icon="@drawable/ic_baseline_menu_book_24"
         android:title="@string/title_books"/>
 
     <item
-        android:id="@+id/nav_another"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/title_another"/>
+        android:id="@+id/nav_undone_unborrowed"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="@string/title_undone_unborrowed"/>
+
+    <item
+        android:id="@+id/nav_undone_borrowed"
+        android:icon="@drawable/ic_baseline_local_fire_department_24"
+        android:title="@string/title_undone_borrowed"/>
+
+    <item
+        android:id="@+id/nav_done_unborrowed"
+        android:icon="@drawable/diagonal"
+        android:title="@string/title_done_unborrowed"/>
+
+    <item
+        android:id="@+id/nav_done_borrowed"
+        android:icon="@drawable/ic_baseline_check_24"
+        android:title="@string/title_done_borrowed"/>
 
 </menu>

@@ -1,16 +1,18 @@
 <resources>
     <string name="app_name">Meine Bücher</string>
 
-    <string name="title_other">other</string>
     <string name="title_books">Bücher</string>
-    <string name="title_another">another</string>
+    <string name="title_undone_unborrowed">Neu</string>
+    <string name="title_undone_borrowed">Ausgeliehen</string>
+    <string name="title_done_unborrowed">Gelesen</string>
+    <string name="title_done_borrowed">Gel/Aus</string>
 
     <!-- dialog -->
     <string name="dialog_header_new">Erstellen</string>
     <string name="dialog_header_edit">Bearbeiten</string>
     <string name="dialog_author">Autor</string>
     <string name="dialog_title">Titel</string>
-    <string name="dialog_isbn">ISBN</string>
+    <string name="dialog_isbn">Nummer</string>
     <string name="dialog_action_ok">ok</string>
     <string name="dialog_action_cancel">zurück</string>
 

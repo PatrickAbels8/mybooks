@@ -33,14 +33,20 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
-                        case R.id.nav_other:
-                            selectedFragment = new OtherFragment();
-                            break;
                         case R.id.nav_books:
                             selectedFragment = new BooksFragment();
                             break;
-                        case R.id.nav_another:
-                            selectedFragment = new AnotherFragment();
+                        case R.id.nav_undone_unborrowed:
+                            selectedFragment = new UndoneUnborrowedFragment();
+                            break;
+                        case R.id.nav_undone_borrowed:
+                            selectedFragment = new UndoneBorrowedFragment();
+                            break;
+                        case R.id.nav_done_unborrowed:
+                            selectedFragment = new DoneUnborrowedFragment();
+                            break;
+                        case R.id.nav_done_borrowed:
+                            selectedFragment = new DoneBorrowedFragment();
                             break;
                     }
 

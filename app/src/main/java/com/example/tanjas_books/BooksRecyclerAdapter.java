@@ -41,7 +41,8 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position){
         holder.itemAuthor.setText(booksRecyclerItemList.get(position).getAuthor());
-        holder.itemTitle.setText(booksRecyclerItemList.get(position).getTitle());
+        String _title = booksRecyclerItemList.get(position).getTitle()+" "+booksRecyclerItemList.get(position).getIsbn();
+        holder.itemTitle.setText(_title);
         if(booksRecyclerItemList.get(position).getBorrowed())
             holder.itemBorrowed.setImageResource(R.drawable.ic_baseline_local_fire_department_24);
         else
