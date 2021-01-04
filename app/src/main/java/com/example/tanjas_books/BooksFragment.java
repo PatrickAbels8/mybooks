@@ -27,7 +27,7 @@ import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class BooksFragment extends Fragment implements BookDialog.OnInputSelected {
+public class BooksFragment extends Fragment implements BookDialog.OnInputSelected, DeleteDialog.OnInputSelected {
     private Context context;
 
     private DatabaseHelper databaseHelper;
@@ -47,12 +47,26 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
             switch(direction){
                 case ItemTouchHelper.LEFT:
-                    onDelete(viewHolder.getAdapterPosition());
+                    BooksRecyclerItem item = itemList.get(position);
+
+                    Bundle args = new Bundle();
+                    args.putInt(getString(R.string.intent_position), viewHolder.getAdapterPosition());
+                    args.putString(getString(R.string.intent_author), item.getAuthor());
+                    args.putString(getString(R.string.intent_title), item.getTitle());
+                    args.putString(getString(R.string.intent_isbn), item.getIsbn());
+
+                    DeleteDialog dialog = new DeleteDialog();
+                    dialog.setTargetFragment(BooksFragment.this, 1);
+                    dialog.setArguments(args);
+                    dialog.show(getFragmentManager(), "");
+
+                    adapter.notifyDataSetChanged();
                     break;
                 case ItemTouchHelper.RIGHT:
-                    onDone(viewHolder.getAdapterPosition());
+                    onDone(position);
                     break;
             }
         }
@@ -153,6 +167,11 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
         }else if(method.equals(getString(R.string.dialog_header_new))){
             onNew(author, title, isbn);
         }
+    }
+
+    @Override
+    public void sendDeletion(int position) {
+        onDelete(position);
     }
 
     public void sort(){

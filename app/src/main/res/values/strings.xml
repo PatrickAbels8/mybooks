@@ -1,15 +1,31 @@
 <resources>
     <string name="app_name">Meine Bücher</string>
 
+    <!-- navigation -->
     <string name="title_books">Bücher</string>
     <string name="title_undone_unborrowed">Neu</string>
     <string name="title_undone_borrowed">Ausgeliehen</string>
     <string name="title_done_unborrowed">Gelesen</string>
     <string name="title_done_borrowed">Gel/Aus</string>
 
+    <!-- text -->
+    <string name="information">
+        Buch anlegen: + drücken\n\n
+        Buch bearbeiten: auf Buchzeile drücken\n\n
+        Buch leihen: auf Bild rechts in der Buchzeile drücken\n\n
+        Buch entleihen: auf Bild rechts in der Buchzeile drücken\n\n
+        Buch lesen: Buchzeile nach rechts wischen\n\n
+        Buch entlesen: Buchzeile nach rechts wischen\n\n
+        Buch löschen: Buchzeile nach links schieben\n
+    </string>
+    <string name="information_goto">
+        Zum Bearbeiten deiner Bücher gehe zur "Bücher"-Seite
+    </string>
+
     <!-- dialog -->
     <string name="dialog_header_new">Erstellen</string>
     <string name="dialog_header_edit">Bearbeiten</string>
+    <string name="dialog_header_delete">Wirklich löschen?</string>
     <string name="dialog_author">Autor</string>
     <string name="dialog_title">Titel</string>
     <string name="dialog_isbn">Nummer</string>
