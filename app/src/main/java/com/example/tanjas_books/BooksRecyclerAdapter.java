@@ -40,8 +40,9 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position){
+        holder.itemId.setText(Integer.toString(position+1)+".");
         holder.itemAuthor.setText(booksRecyclerItemList.get(position).getAuthor());
-        String _title = booksRecyclerItemList.get(position).getTitle()+" "+booksRecyclerItemList.get(position).getIsbn();
+        String _title = booksRecyclerItemList.get(position).getIsbn()+" "+booksRecyclerItemList.get(position).getTitle();
         holder.itemTitle.setText(_title);
         if(booksRecyclerItemList.get(position).getBorrowed())
             holder.itemBorrowed.setImageResource(R.drawable.ic_baseline_local_fire_department_24);
@@ -59,6 +60,7 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
+        TextView itemId;
         TextView itemAuthor;
         TextView itemTitle;
         ImageView itemBorrowed;
@@ -67,6 +69,7 @@ public class BooksRecyclerAdapter extends RecyclerView.Adapter<BooksRecyclerAdap
         public ItemViewHolder(@NonNull View itemView, final OnItemClickListener clickListener){
             super(itemView);
 
+            itemId = itemView.findViewById(R.id.item_id);
             itemAuthor = itemView.findViewById(R.id.item_author);
             itemTitle = itemView.findViewById(R.id.item_title);
             itemBorrowed = itemView.findViewById(R.id.item_borrowed);

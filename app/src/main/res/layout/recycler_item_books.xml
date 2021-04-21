@@ -15,12 +15,24 @@
         android:background="@drawable/transparent">
 
         <TextView
+            android:id="@+id/item_id"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="2."
+            android:textColor="@color/accent"
+            android:textAlignment="textEnd"
+            android:textSize="24sp"
+            android:layout_marginRight="18dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
             android:id="@+id/item_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Astrid Lindgren"
             android:textSize="15sp"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@id/item_id"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@id/item_borrowed"/>
 
@@ -30,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Pippi Langstrumpf"
             android:textSize="20sp"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@id/item_id"
             android:layout_below="@id/item_author"
             android:layout_toLeftOf="@id/item_borrowed"/>
 

@@ -62,7 +62,10 @@ public class DoneBorrowedFragment extends Fragment {
         Collections.sort(itemList, new Comparator<BooksRecyclerItem>() {
             @Override
             public int compare(BooksRecyclerItem o1, BooksRecyclerItem o2) {
-                return o1.getAuthor().compareTo(o2.getAuthor());
+                if(o1.getAuthor().compareTo(o2.getAuthor()) != 0)
+                    return o1.getAuthor().compareTo(o2.getAuthor());
+                else
+                    return o1.getIsbn().compareTo(o2.getIsbn());
             }
         });
         adapter.notifyDataSetChanged();
