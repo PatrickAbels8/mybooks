@@ -1,9 +1,12 @@
 package com.example.tanjas_books;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,17 +31,24 @@ import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class BooksFragment extends Fragment implements BookDialog.OnInputSelected, DeleteDialog.OnInputSelected {
+public class BooksFragment extends Fragment implements
+        BookDialog.OnInputSelected,
+        DeleteDialog.OnInputSelected,
+        ImportDialog.OnImportSelected{
     private Context context;
 
     private DatabaseHelper databaseHelper;
 
     private RecyclerView recycler;
     private FloatingActionButton add;
+    private FloatingActionButton export;
+    private FloatingActionButton importCSV;
 
     private BooksRecyclerAdapter adapter;
     private RecyclerView.LayoutManager manager;
     private List<BooksRecyclerItem> itemList;
+
+    private final int import_request_code = 101;
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
         @Override
@@ -93,6 +104,8 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
         // init coms
         recycler = v.findViewById(R.id.recycler);
         add = v.findViewById(R.id.add);
+        export = v.findViewById(R.id.export);
+        importCSV = v.findViewById(R.id.importCSV);
 
         // init database
         databaseHelper = new DatabaseHelper(context);
@@ -113,7 +126,6 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
         // read/unread/delete item
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recycler);
 
-
         // add item
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +137,28 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
                 dialog.setTargetFragment(BooksFragment.this, 1);
                 dialog.setArguments(args);
                 dialog.show(getFragmentManager(), "");
+            }
+        });
+
+        // export data
+        export.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onExport();
+            }
+        });
+
+        // import data
+        importCSV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                ImportDialog dialog = new ImportDialog();
+                dialog.setTargetFragment(BooksFragment.this, 1);
+                dialog.setArguments(args);
+                dialog.show(getFragmentManager(), "");
+
+                onReadAll();
             }
         });
 
@@ -170,6 +204,11 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
     }
 
     @Override
+    public void sendImport(String input) {
+        onImport(input);
+    }
+
+    @Override
     public void sendDeletion(int position) {
         onDelete(position);
     }
@@ -206,6 +245,21 @@ public class BooksFragment extends Fragment implements BookDialog.OnInputSelecte
         }
         adapter.notifyDataSetChanged();
         sort();
+    }
+
+    public void onImport(String data){
+        if(databaseHelper.importTXT(data))
+            Toast.makeText(context,getString(R.string.import_success), Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context,getString(R.string.import_failure), Toast.LENGTH_SHORT).show();
+    }
+
+    public void onExport(){
+        if(databaseHelper.exportTXT())
+            Toast.makeText(context,getString(R.string.export_success), Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context,getString(R.string.export_failure), Toast.LENGTH_SHORT).show();
+
     }
 
     public void onDelete(int position){

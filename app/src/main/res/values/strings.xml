@@ -26,9 +26,11 @@
     <string name="dialog_header_new">Erstellen</string>
     <string name="dialog_header_edit">Bearbeiten</string>
     <string name="dialog_header_delete">Wirklich löschen?</string>
+    <string name="dialog_header_import">Importieren</string>
     <string name="dialog_author">Autor</string>
     <string name="dialog_title">Titel</string>
     <string name="dialog_isbn">Nummer</string>
+    <string name="dialog_data">Daten</string>
     <string name="dialog_action_ok">ok</string>
     <string name="dialog_action_cancel">zurück</string>
 
@@ -43,4 +45,10 @@
     <!-- errors -->
     <string name="error_dbError">Prüfe die SQL-Verbindung!</string>
     <string name="error_wrongInput">Prüfe deine Eingaben!</string>
+
+    <!-- db -->
+    <string name="export_success">Export erfolgreich!</string>
+    <string name="export_failure">Export fehlgeschlagen!</string>
+    <string name="import_success">Import erfolgreich!</string>
+    <string name="import_failure">Import fehlgeschlagen!</string>
 </resources>
